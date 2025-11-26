@@ -13,8 +13,11 @@ class CreateAcommentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('acomments', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('item_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->string('content');
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ class CreateAcommentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('acomments');
+        Schema::dropIfExists('comments');
     }
 }

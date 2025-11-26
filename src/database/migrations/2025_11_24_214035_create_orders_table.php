@@ -15,6 +15,13 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('item_id')->constrained()->cascadeOnDelete();
+            $table->tinyInteger('payment_method');
+            $table->integer('total_price');
+            $table->string('shipping_postcode');
+            $table->string('shipping_address');
+            $table->string('shipping_building')->nullable();
             $table->timestamps();
         });
     }
